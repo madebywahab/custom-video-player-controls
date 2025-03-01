@@ -1,4 +1,4 @@
-# 🎬 Interactive Video Player with Play/Pause Overlay & Control Buttons | JavaScript  
+# 🎬 Interactive Video Player with Play/Pause Overlay & Control Buttons | JavaScript 
 (customize your video player with a clickable overlay button for smooth play/pause functionality using pure JavaScript. Features custom SVG icons, event listener optimization, and a seamless user experience. Perfect for media websites and custom players!
 ) 
 
@@ -6,31 +6,34 @@
 I have **disabled pointer events** for `.progress`, meaning users **cannot skip** to another part of the video but can **only rewind**. If you prefer to allow seeking, simply remove `pointer-events: none;` from the `.progress` class in the CSS.  
 
 ## Description  
-Enhance your video player with an interactive play/pause overlay button and additional control buttons using pure JavaScript! This lightweight script ensures a seamless user experience by allowing users to control video playback effortlessly. The overlay button disappears when the video starts and reappears when paused, improving accessibility and usability.  
+Enhance your **custom HTML5 video player** with an interactive **play/pause overlay button**, **custom video player buttons**, and an **HTML5 video player with custom controls** using **pure JavaScript, HTML, and CSS**! This **custom JavaScript video player** is optimized for a **responsive video player UI**, allowing you to **disable skipping in a video player** while enabling **rewind functionality**. The **custom video controls with JavaScript** include **play/pause button overlay for video**, **customized video player controls**, and optional **video quality selection**. If you're looking for **how to create a custom video player in HTML**, this project provides a **custom video player with buttons** that improves usability and prevents unwanted seeking.  
 
 ## 🔹 Features  
-✅ One-click play/pause functionality with an overlay button  
-✅ Additional control buttons for enhanced video management  
-✅ Custom SVG icons for intuitive playback control  
-✅ Event listener optimization to prevent multiple bindings  
-✅ Smooth UI interactions with dynamic button visibility  
-✅ **Restricted skipping** (users can rewind but not skip forward)  
-✅ [Optional] Quality selection feature (can be customized further)  
+✅ **Custom HTML5 video player** with interactive **customized video player controls**  
+✅ One-click **play/pause button overlay for video** to improve usability  
+✅ **Custom video player with buttons** for better playback control  
+✅ **Custom SVG icons** for an enhanced **HTML5 video player with custom controls**  
+✅ Optimized **event listeners** to prevent multiple bindings  
+✅ Smooth UI interactions with **custom video controls using JavaScript**  
+✅ **Disable skipping in video player HTML** while allowing **rewind-only functionality**  
+✅ Optional **video quality selection feature** for an enhanced experience  
 
 ## 🚀 Technologies Used  
-- JavaScript (ES6)  
-- HTML5 Video Element  
-- CSS for Styling  
+- **JavaScript (ES6)**  
+- **HTML5 Video Element**  
+- **CSS for Styling & Custom UI**  
 
 ## 📌 Usage  
-Simply integrate this script into your project to enhance video interactions. Ideal for custom video players, tutorials, and media websites!  
+This **custom JavaScript video player** is perfect for:  
+✅ **Custom video players for websites** that need **customized video player controls**  
+✅ **HTML5 video customization** for a **custom video player with buttons**  
+✅ **Adding a play/pause button overlay for video** to improve accessibility  
+✅ **Building a responsive video player UI** with **custom video controls using JavaScript**  
+✅ **Preventing skipping in video while allowing rewind** for controlled playback  
+✅ **Creating a JavaScript video player with rewind-only functionality**  
 
 🔗 **Live Demo:** [Custom Video Player Controls](https://madebywahab.github.io/custom-video-player-controls/)  
 🔗 **View the Code on GitHub**  
 
 ### 📢 Connect with Me  
 💼 **LinkedIn:** [Wahab Wali Khan](https://www.linkedin.com/in/wahabwalikhan-website-developer/)  
-
----
-
-Now it's complete with your LinkedIn link! 🚀 Let me know if you'd like any more refinements. 😊
