@@ -1,0 +1,237 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="video.js" ></script>
+  <link rel="stylesheet" href="video.js">
+</head>
+
+<style>
+  .video-container {
+    position: relative;
+    width: 1050px;
+    background: #000;
+    border-radius: 25px;
+    overflow: hidden;
+        
+
+  }
+
+  video {
+    width: 100%;
+    position:relative;
+    display: block;
+    cursor: pointer;
+  }
+
+  
+
+  
+  #parent {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    bottom: 0;
+  }
+
+  #element {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(0 0 0 / 80%);
+    padding: 0 20px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: all;
+    z-index:999999;
+  }
+
+  #child-0,
+  #child-2 {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  #child-1 {
+    flex-grow: 1;
+    margin: 0 20px;
+  }
+
+  .control-btn {
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+  .progress-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    position: relative;
+   pointer-events: none;
+    border-radius:20px;
+  }
+
+  .progress {
+    height: 100%;
+    width: 0;
+    background: #fff;
+    transition: width 0.1s linear;
+    pointer-events: none;
+  }
+
+  .video-container:hover #element {
+    opacity: 1;
+  }
+
+  .volume-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .volume-slider {
+    position: absolute;
+    bottom: 30px;
+    left: 15%;
+    width: 20px;
+    height: 80px;
+    /* -webkit-appearance: slider-vertical; */
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  input[type="range"] {
+  appearance: slider-vertical;
+}
+
+  .volume-container:hover .volume-slider {
+    opacity: 1;
+  }
+
+  .fullscreen .video-container {
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0;
+  }
+
+  .overlayButton {
+        width: 90px;
+    height: 90px;
+    background-color: #0000007a;
+    border: none;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  z-index:99999;
+  position:absolute;
+  left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50px);
+  
+  
+}
+
+.overlayButton:hover {
+    background-color: #1818187d;
+
+}
+
+.overlayButton svg {
+    width: 30px;
+    height: 30px;
+}
+
+  
+</style>
+
+<body>
+<div class="video-container">
+  <button    class="overlayButton ">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20">
+        <path d="M60.54,512c-17.06,0-30.43-13.86-30.43-31.56V31.55C30.12,13.86,43.48,0,60.55,0A32.94,32.94,0,0,1,77,4.52L465.7,229c10.13,5.85,16.18,16,16.18,27s-6,21.2-16.18,27L77,507.48A32.92,32.92,0,0,1,60.55,512Z" fill="#fff"/>
+    </svg>
+</button><span 
+  class="dff" 
+  style="position: absolute; 
+         cursor: pointer; 
+         z-index: 999; 
+         inset: 0; 
+      ">
+</span>
+  <video id="video">
+    
+    <source
+      src="https://redemptionacademy.xyz/wp-content/uploads/2025/02/VSL-REDEMPTION-FINAL-1mp4.mp4"
+      data-quality="360"
+    />
+   
+
+  </video>
+
+  <div class="Root__wrapper" id="parent">
+    <div class="ControlBar__wrapper" id="element">
+      <div class="ControlBar__block" id="child-0">
+        <span class="control-btn" id="playBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="15" height="15">
+        <path d="M60.54,512c-17.06,0-30.43-13.86-30.43-31.56V31.55C30.12,13.86,43.48,0,60.55,0A32.94,32.94,0,0,1,77,4.52L465.7,229c10.13,5.85,16.18,16,16.18,27s-6,21.2-16.18,27L77,507.48A32.92,32.92,0,0,1,60.55,512Z" fill="#fff"/>
+      </svg></span>
+     <span class="control-btn" id="backwardBtn"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 512 512" width="15" height="15" style="display: inline-block; vertical-align: middle;">
+  <path d="M481.76,510.43c17,0,30.24-13.78,30.24-31.36V32.93c0-17.58-13.28-31.36-30.25-31.36a32.73,32.73,0,0,0-16.3,4.49L128.61,229.12C118.54,234.93,112.53,245,112.53,256s6,21.07,16.08,26.87L465.45,505.94a32.72,32.72,0,0,0,16.3,4.49Z" fill="#ffffff"/>
+  <path d="M61.94,499.51a61.94,61.94,0,0,0,61.94-61.93V74.42A61.94,61.94,0,0,0,0,74.42V437.58A61.94,61.94,0,0,0,61.94,499.51Z" fill="#ffffff"/>
+</svg>
+
+</span>
+        
+        
+      </div>
+
+      <div class="ControlBar__block" id="child-1">
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
+      </div>
+
+      <div class="ControlBar__block" id="child-2">
+        <div class="volume-container">
+          <span class="control-btn" id="volumeBtn">🔊</span>
+          <input
+          type="range"
+          class="volume-slider"
+          min="0"
+          max="1"
+          step="0.1"
+          value="1"
+          style="writing-mode: vertical-lr; direction: rtl;"
+        />
+        
+
+
+
+        </div>
+        <span class="control-btn" id="fullscreenBtn">⛶</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+</body>
+
+
+
+</html>
