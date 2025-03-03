@@ -1,240 +1,663 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="video.js" ></script>
-  <link rel="stylesheet" href="video.js">
-</head>
-
 <style>
-  .video-container {
-    position: relative;
-    width: 1050px;
-    background: #000;
-    border-radius: 25px;
-    overflow: hidden;
-        
 
+
+
+  .mute-box h1{
+      font-size:30px;
+   margin:0;   
   }
+:root {
+--bg-color-gradient: linear-gradient(90deg, rgb(38 255 244 / 40%) 0%, rgba(20, 150, 186, 0.6) 100%);
+--blur-value:blur(8px);
 
-  video {
-    width: 100%;
-    position:relative;
-    display: block;
-    cursor: pointer;
-  }
+}
+.video-container {
+  position: relative;
+  /* width: 1050px; */
 
-  
+  border-radius: 25px;
+  overflow: hidden;
+      
 
-  
-  #parent {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    bottom: 0;
-  }
-
-  #element {
-    display: flex;
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    background-color: rgb(0 0 0 / 80%);
-    padding: 0 20px;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: space-between;
-    bottom: 0;
-    opacity: 0;
-    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: all;
-    z-index:999999;
-  }
-
-  #child-0,
-  #child-2 {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-
-  #child-1 {
-    flex-grow: 1;
-    margin: 0 20px;
-  }
-
-  .control-btn {
-    color: white;
-    cursor: pointer;
-    font-size: 20px;
-    user-select: none;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-  .progress-bar {
-    height: 6px;
-    background: rgba(255, 255, 255, 0.3);
-    position: relative;
-   pointer-events: none;
-    border-radius:20px;
-  }
-
-  .progress {
-    height: 100%;
-    width: 0;
-    background: #fff;
-    transition: width 0.1s linear;
-    pointer-events: none;
-  }
-
-  .video-container:hover #element {
-    opacity: 1;
-  }
-
-  .volume-container {
-    position: relative;
-    display: inline-block;
-  }
-
-  .volume-slider {
-    position: absolute;
-    bottom: 30px;
-    left: 15%;
-    width: 20px;
-    height: 80px;
-    /* -webkit-appearance: slider-vertical; */
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  input[type="range"] {
-  appearance: slider-vertical;
+video {
+  width: 100%;
+  position:relative;
+  display: block;
+  cursor: pointer;
 }
 
-  .volume-container:hover .volume-slider {
-    opacity: 1;
-  }
 
-  .fullscreen .video-container {
-    width: 100vw !important;
-    height: 100vh !important;
-    border-radius: 0;
-  }
 
-  .overlayButton {
-        width: 90px;
-    height: 90px;
-    background-color: #0000007a;
-    border: none;
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  z-index:99999;
-  position:absolute;
-  left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50px);
-  
-  
+
+#parent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  bottom: 0;
+}
+
+#element {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  background-image: var(--bg-color-gradient);
+  backdrop-filter: var(--blur-value) ;
+  padding: 0 20px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: all;
+  z-index:999999;
+}
+
+#child-0,
+#child-2 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#child-1 {
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+.control-btn {
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  position: relative;
+ pointer-events: none;
+  border-radius:20px;
+}
+
+.progress {
+  height: 100%;
+  width: 0;
+  background: #fff;
+  transition: width 0.1s linear;
+  pointer-events: none;
+
+}
+
+.video-container:hover #element {
+ opacity: 1;
+}
+
+
+
+
+.volume-container {
+  position: relative;
+  display: inline-block;
+}
+
+.volume-slider {
+  position: absolute;
+  bottom: 30px;
+  left: 15%;
+  width: 20px;
+  height: 80px;
+  /* -webkit-appearance: slider-vertical; */
+  opacity: 0;
+
+}
+
+
+.volumeBtn:hover .volume-slider {
+  opacity: 1;
+
+}
+
+
+
+input[type="range"] {
+appearance: slider-vertical;
+}
+
+
+.fullscreen .video-container {
+  width: 100vw !important;
+  height: 100vh !important;
+  border-radius: 0;
+}
+
+.overlayButton {
+      width: 90px;
+  height: 90px;
+  background-color: #0000007a;
+  border: none;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+z-index:99999;
+position:absolute;
+left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50px);
+
+display: none;
 }
 
 .overlayButton:hover {
-    background-color: #1818187d;
+  background-color: #1818187d;
 
 }
 
 .overlayButton svg {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
+}
+.mute-box{
+box-shadow: -1px 3px 20px 3px rgba(0, 0, 0, .75);
+border: 2px solid white;
+padding: 70px 40px ;
+color: white;
+text-align: center;
+display: flex;
+gap: 10px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+z-index: 99999;
+background-image:linear-gradient(90deg, rgb(38 255 244 / 20%) 0%, rgb(20 186 158 / 20%) 100%) ;
+backdrop-filter: var(--blur-value);
+cursor: pointer;
 }
 
+.AutoPlayBox__icon .AutoPlayBox__icon__blink {
+  animation: AutoPlayBox_blink 2s infinite;
+  opacity: 0;
+  transition:  all;
   
+}
+
+@keyframes AutoPlayBox_blink{
+from {
+opacity: 0;
+transition: all 1s;
+}
+to{
+opacity: 1;
+transition: all 1s;
+
+}
+}
+
+
+
+input.volume-slider::before {
+
+content:"";
+background-image: linear-gradient(90deg, rgba(38, 255, 244, 0.434) 20%, rgba(20, 186, 158, 0.581) 100%);
+/* background-color: rgb(38, 255, 244); */
+backdrop-filter: var(--blur-value) ;
+padding:52px 20px;
+  position:absolute;
+z-index:-1;
+left:-9px;
+bottom:-9px;
+cursor: pointer;
+}
+
+.volume-container:hover .volume-slider{
+opacity: 1;
+}
+
+
+input.volume-slider{
+margin-bottom:20px;
+cursor: pointer;
+
+}
+
+
+
+
+/* Quality Control */
+
+.quality-control{
+  cursor: pointer;
+  display: flex;
+}
+.quality-menu {
+
+      padding: 20px 15px;
+      position: absolute;
+      list-style: none;
+      bottom: 100%;
+      right: 2%;
+      border-radius: 20px 20px 0px 0px;
+      display: none;
+      flex-direction: column;
+  background-image: var(--bg-color-gradient);backdrop-filter: var(--blur-value) ;
+  align-items: stretch;
+gap: 5px;
+  width: 160px;
+}
+.quality-option {
+font-size: 16px;
+  cursor: pointer;
+  margin: 2px;
+  border-radius: 5px;
+  color: white;
+  display: block;
+  
+  padding: 5px;
+}
+.quality-option:hover{
+  color: black;
+}
+.quality-option.selected {
+  color: black;
+  border: 1px solid black;
+
+ font-weight: bold;
+
+  padding: 5px;
+
+ 
+
+}
+
+/* .quality-option.selected::after {
+content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 9 6"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="m1.521 3.23 1.833 1.833L7.479.938"></path></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+} */
+
 </style>
 
 <body>
 
-  <h1 style="text-align: center;">Made by Wahab Wali Khan</h1>
-
 <div class="video-container">
-  <button    class="overlayButton ">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20">
-        <path d="M60.54,512c-17.06,0-30.43-13.86-30.43-31.56V31.55C30.12,13.86,43.48,0,60.55,0A32.94,32.94,0,0,1,77,4.52L465.7,229c10.13,5.85,16.18,16,16.18,27s-6,21.2-16.18,27L77,507.48A32.92,32.92,0,0,1,60.55,512Z" fill="#fff"/>
-    </svg>
-</button><span 
-  class="dff" 
-  style="position: absolute; 
-         cursor: pointer; 
-         z-index: 999; 
-         inset: 0; 
-      ">
+<button    class="overlayButton ">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20">
+      <path d="M60.54,512c-17.06,0-30.43-13.86-30.43-31.56V31.55C30.12,13.86,43.48,0,60.55,0A32.94,32.94,0,0,1,77,4.52L465.7,229c10.13,5.85,16.18,16,16.18,27s-6,21.2-16.18,27L77,507.48A32.92,32.92,0,0,1,60.55,512Z" fill="#fff"/>
+  </svg>
+</button>
+
+<span class="mute-box">  <svg width="86" height="78" viewBox="0 0 86 78" class="AutoPlayBox__icon"><path fill="currentColor" fill-rule="evenodd" d="M44.28 9.05a2 2 0 0 0-3.23-1.58L19.74 24.05a1.9 1.9 0 0 0-1.01.39H5.03a4.5 4.5 0 0 0-4.5 4.48V48.8c0 1.17.46 2.32 1.33 3.17.85.86 2 1.32 3.16 1.32h14.22l21.81 16.96a2 2 0 0 0 3.23-1.58V9.05ZM17.93 28.44H5.03a.5.5 0 0 0-.34.15l-.03.03a.42.42 0 0 0-.12.3V48.8c0 .14.05.24.12.3l.06.07c.06.06.17.12.3.12h12.9V28.44Zm4 21.86 18.35 14.28V13.14L21.93 27.4v22.9Z"></path><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+
+<path d="M51.68 27.75c7.37 6.75 8.07 14.09 0 22.2" class="AutoPlayBox__icon__blink">
+
+</path><path d="M60.92 18.05c13.65 15.58 11.9 29.21-.06 41.57" class="AutoPlayBox__icon__blink">
+
+</path><path d="M69.27 8.25c19.2 20.51 17.82 40.9.41 61.19" class="AutoPlayBox__icon__blink">
+
+</path><path d="m79.17 2.55-72.6 72.6"></path></g></svg>
+
+
+<h1>Click To Learn How...</h1>
 </span>
-  <video id="video">
-    
-    <source
-      src="https://player.vimeo.com/external/194837908.sd.mp4?s=c350076905b78c67f74d7ee39fdb4fef01d12420&profile_id=164"
-      data-quality="360"
-    />
-   
+<span 
+class="dff" 
+style="position: absolute; 
+       cursor: pointer; 
+       z-index: 999; 
+       inset: 0; 
+    ">
+</span>
+<video  autoplay muted loop playsinline   id="video">
+  
 
-  </video>
+  <source src="https://redemptionacademy.xyz/wp-content/uploads/2025/03/1080p-REDEMPTION-FINAL-1mp4.mp4" type="video/mp4" />
 
-  <div class="Root__wrapper" id="parent">
-    <div class="ControlBar__wrapper" id="element">
-      <div class="ControlBar__block" id="child-0">
-        <span class="control-btn" id="playBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="15" height="15">
-        <path d="M60.54,512c-17.06,0-30.43-13.86-30.43-31.56V31.55C30.12,13.86,43.48,0,60.55,0A32.94,32.94,0,0,1,77,4.52L465.7,229c10.13,5.85,16.18,16,16.18,27s-6,21.2-16.18,27L77,507.48A32.92,32.92,0,0,1,60.55,512Z" fill="#fff"/>
-      </svg></span>
-     <span class="control-btn" id="backwardBtn"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 512 512" width="15" height="15" style="display: inline-block; vertical-align: middle;">
-  <path d="M481.76,510.43c17,0,30.24-13.78,30.24-31.36V32.93c0-17.58-13.28-31.36-30.25-31.36a32.73,32.73,0,0,0-16.3,4.49L128.61,229.12C118.54,234.93,112.53,245,112.53,256s6,21.07,16.08,26.87L465.45,505.94a32.72,32.72,0,0,0,16.3,4.49Z" fill="#ffffff"/>
-  <path d="M61.94,499.51a61.94,61.94,0,0,0,61.94-61.93V74.42A61.94,61.94,0,0,0,0,74.42V437.58A61.94,61.94,0,0,0,61.94,499.51Z" fill="#ffffff"/>
-</svg>
+
+</video>
+
+<div class="Root__wrapper" id="parent">
+  <div class="ControlBar__wrapper" id="element">
+    <div class="ControlBar__block" id="child-0">
+      <span class="control-btn" id="playBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 21" width="16" height="21" aria-hidden="true" focusable="false" class="PlayToggle__icon"><path fill="currentColor" d="M15.62 9.82 1.22.65A.78.78 0 0 0 .1.95a.86.86 0 0 0-.11.42V19.7c0 .15.04.3.11.42.07.13.17.23.3.3a.77.77 0 0 0 .8-.01l14.4-9.17a.82.82 0 0 0 .29-.3.86.86 0 0 0-.28-1.12Z"></path></svg>
+      </span>
+   <span class="control-btn" id="backwardBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20" width="22" height="20" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" fill-rule="evenodd" fill="none"><path d="M5.67 7.1H1.58V3.03"></path><path d="M5.05 16.36a9 9 0 1 0 0-12.72L1.58 7.1"></path></g><path fill="currentColor" fill-rule="nonzero" d="M10.37 13h-1.2V9.15l.03-.6c-.2.2-.34.34-.42.4l-.66.53-.58-.73L9.38 7.3h1V13h-.01Zm5.55-2.86c0 1-.16 1.74-.5 2.22-.32.48-.82.72-1.5.72-.66 0-1.16-.25-1.5-.74a4 4 0 0 1-.5-2.2 4 4 0 0 1 .5-2.22c.32-.48.82-.72 1.5-.72.66 0 1.16.25 1.5.75a4 4 0 0 1 .5 2.2v-.01Zm-2.8 0c0 .7.07 1.2.19 1.51.12.3.32.46.6.46.29 0 .5-.16.62-.47.12-.3.19-.8.19-1.5s-.07-1.2-.2-1.5c-.12-.31-.32-.46-.6-.46-.28 0-.49.15-.61.46-.12.3-.18.8-.18 1.5h-.01Z"></path></svg>
 
 </span>
+      
+      
+    </div>
+
+    <div class="ControlBar__block" id="child-1">
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+    </div>
+
+    <div class="ControlBar__block" id="child-2">
+      <div class="volume-container">
+        <span class="control-btn" id="volumeBtn"> 
+
+          <svg viewBox="0 0 24 22" width="24" height="22" aria-hidden="true" focusable="false"><g fill="none" fill-rule="evenodd"><path fill="currentColor" d="M12.59 2.87a.75.75 0 0 0-1.21-.59L5.6 6.77a.75.75 0 0 0-.26.1H1.68C.89 6.87.26 7.5.25 8.29v5.42c0 .37.14.74.42 1 .27.29.64.43 1 .43h3.81l5.9 4.58a.75.75 0 0 0 1.2-.59V2.87h.01Zm-7.6 5.5H1.75v5.27h3.24V8.37Zm1.5 5.65 4.6 3.58V4.4l-4.6 3.58v6.04Z"></path><g stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M19.2 2.66c5.23 5.59 4.86 11.15.11 16.68"></path><path d="M16.92 5.33c3.73 4.25 3.25 7.96-.01 11.34"></path><path d="M14.4 7.97c2.01 1.85 2.2 3.85 0 6.06"></path></g></g></svg>
+
+          
+        </span>
+        <input
+        type="range"
+        class="volume-slider"
+        min="0"
+        max="1"
+        step="0.1"
+        value="1"
+        style="writing-mode: vertical-lr; direction: rtl;"
+      />
+      
+
+
+
+      </div>
+      
+
+
+     
+      <div class="quality-control">  
+
+        <div class="quality-menu">
+          <div class="quality-option selected" data-quality="auto">Quality: <span class="shown-quality checkmark">Auto</span> </div>
+          <div class="quality-option" data-quality="auto">Auto</div>
+          <div class="quality-option" data-quality="4K">4K</div>
+
+          <div class="quality-option" data-quality="1080p">1080p</div>
+          <div class="quality-option" data-quality="720p">720p</div>
+          <div class="quality-option" data-quality="360p">360p</div>
+        </div> 
+
         
-        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" focusable="false"><g fill="#fff"><path d="M2.03 14.2a1.306 1.306 0 0 1 .229-.75c.12-.179.242-.355.353-.539a.192.192 0 0 0 .004-.158c-.126-.255-.269-.501-.388-.758-.055-.118-.115-.165-.248-.166-.265-.002-.535 0-.793-.051-.574-.114-.978-.593-1.027-1.175C.107 9.985.056 9.366.004 8.748c-.053-.63.412-1.232 1.059-1.372.195-.042.393-.072.587-.12a.21.21 0 0 0 .128-.115c.097-.281.184-.566.266-.852a.196.196 0 0 0-.03-.155c-.126-.15-.264-.29-.397-.434a1.325 1.325 0 0 1-.076-1.741c.396-.49.803-.97 1.221-1.442.453-.51 1.165-.59 1.738-.214.148.097.296.195.44.297.06.042.103.048.174.01.29-.16.587-.303.877-.461a.208.208 0 0 0 .094-.142c.02-.233.01-.468.037-.699A1.33 1.33 0 0 1 7.372.143C7.912.109 8.45.063 8.988.01c.577-.056 1.046.112 1.375.61.146.22.206.473.233.725.031.284.131.44.436.489.244.039.476.153.711.242.08.03.13.025.195-.037.209-.193.41-.4.644-.556.458-.307 1.103-.25 1.525.106.474.4.947.802 1.419 1.205.496.423.593 1.193.223 1.74-.12.178-.234.36-.359.534-.05.072-.044.122-.004.198.134.25.258.506.377.764.038.08.075.12.173.121.256.003.515 0 .767.039.682.107 1.112.616 1.154 1.308.034.545.08 1.088.135 1.632.075.73-.39 1.362-1.11 1.495-.224.042-.447.087-.668.14-.043.01-.098.052-.112.092-.087.245-.166.493-.239.743a.194.194 0 0 0 .033.155c.152.177.312.347.473.515.483.505.507 1.276.056 1.808-.377.445-.754.89-1.13 1.337-.475.564-1.205.668-1.818.26-.186-.125-.376-.244-.558-.373-.069-.048-.116-.041-.186-.003-.236.13-.475.256-.718.373-.075.037-.096.081-.098.16-.01.303-.007.61-.049.908-.088.636-.653 1.096-1.297 1.115-.409.012-.816.07-1.225.1-.31.021-.621.09-.93-.002-.543-.162-.863-.527-.974-1.08-.04-.2-.08-.401-.116-.603-.014-.083-.053-.124-.136-.148a25.06 25.06 0 0 1-.877-.273c-.07-.023-.113-.024-.17.031-.162.161-.33.317-.5.47-.505.459-1.22.487-1.75.055a67.54 67.54 0 0 1-1.43-1.212 1.283 1.283 0 0 1-.433-.993ZM5.042 4.017c-.383-.257-.754-.507-1.127-.755-.146-.097-.237-.09-.342.034-.372.437-.743.875-1.112 1.315-.12.141-.116.219.009.353.285.309.568.619.86.92.07.072.07.124.03.203a6.49 6.49 0 0 0-.62 2.008c-.011.086-.057.105-.126.118-.425.084-.85.17-1.274.255-.167.033-.22.103-.207.273.042.563.085 1.126.13 1.689.014.185.083.256.271.264.433.017.867.03 1.3.04.076.002.117.02.142.097.22.68.544 1.308.968 1.882.07.093.051.16-.008.247-.246.363-.487.73-.728 1.095-.088.134-.075.23.044.33.437.373.874.744 1.312 1.115.138.116.22.114.353-.01.325-.302.65-.602.97-.91.08-.078.14-.088.24-.038a6.432 6.432 0 0 0 2.02.621c.097.014.119.065.134.144.085.444.173.888.261 1.331.04.197.105.247.298.231l1.672-.138c.196-.017.253-.078.26-.272.017-.462.039-.923.048-1.384.002-.11.041-.154.138-.187a6.396 6.396 0 0 0 1.774-.935c.072-.054.125-.046.196.003.382.259.767.513 1.153.768.17.112.239.1.37-.053l1.06-1.249c.157-.185.154-.26-.018-.441-.31-.33-.618-.662-.93-.99-.051-.054-.067-.096-.03-.169a6.498 6.498 0 0 0 .614-1.865c.018-.11.07-.151.176-.17.444-.082.886-.172 1.329-.26.174-.036.234-.113.22-.282l-.14-1.689c-.018-.2-.085-.258-.287-.263-.434-.01-.867-.024-1.3-.032-.09-.002-.144-.024-.172-.12a6.355 6.355 0 0 0-.933-1.899c-.046-.065-.043-.107.001-.17.241-.356.476-.715.714-1.073.144-.218.135-.273-.067-.443-.403-.34-.805-.68-1.206-1.023-.187-.16-.266-.16-.44.007-.302.286-.606.569-.905.857-.057.055-.102.056-.17.023a14.464 14.464 0 0 0-.659-.306 6.03 6.03 0 0 0-1.437-.393c-.091-.014-.153-.032-.174-.152-.068-.394-.156-.785-.236-1.178-.051-.248-.112-.283-.367-.26a94.37 94.37 0 0 1-1.588.132c-.207.016-.275.078-.281.283-.013.411-.028.821-.034 1.232-.002.099-.037.14-.125.167-.13.04-.255.09-.382.137a6.685 6.685 0 0 0-1.642.935Z"></path><path d="M8.963 5.376c1.94-.002 3.546 1.595 3.547 3.526.002 1.995-1.595 3.604-3.569 3.597-1.945-.007-3.542-1.615-3.544-3.568-.003-1.956 1.599-3.552 3.566-3.555ZM8.96 6.502C7.62 6.5 6.513 7.605 6.519 8.939c.006 1.33 1.122 2.443 2.435 2.434a2.434 2.434 0 0 0 2.433-2.427A2.433 2.433 0 0 0 8.96 6.502Z"></path></g></svg>
+      
+      
       </div>
 
-      <div class="ControlBar__block" id="child-1">
-        <div class="progress-bar">
-          <div class="progress"></div>
-        </div>
-      </div>
-
-      <div class="ControlBar__block" id="child-2">
-        <div class="volume-container">
-          <span class="control-btn" id="volumeBtn">🔊</span>
-          <input
-          type="range"
-          class="volume-slider"
-          min="0"
-          max="1"
-          step="0.1"
-          value="1"
-          style="writing-mode: vertical-lr; direction: rtl;"
-        />
+      <div class="control-btn " id="fullscreenBtn " onclick="toggleFullScreen()">
         
-
-
-
-        </div>
-        <span class="control-btn" id="fullscreenBtn">⛶</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 18" width="22" height="20" aria-hidden="true" focusable="false"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M14.2 4.2h3.2v3.2m-9.6 6.4H4.6v-3.2"></path><path d="M19.8 1H2.2a.8.8 0 0 0-.8.8v14.4c0 .44.36.8.8.8h17.6a.8.8 0 0 0 .8-.8V1.8a.8.8 0 0 0-.8-.8Z"></path></g></svg>
+        
       </div>
     </div>
   </div>
+</div>
 </div>
 
 
 
 
 </body>
+<script>
 
 
 
-</html>
+
+
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//     const volumeBtn = document.getElementById("volumeBtn");
+//     const volumeSlider = document.querySelector(".volume-slider");
+
+//     volumeBtn.addEventListener("mouseenter", function () {
+//         volumeSlider.style.display = "flex";
+//     });
+
+//     volumeBtn.addEventListener("mouseleave", function () {
+//         if (!volumeSlider.matches(":hover")) {
+//             volumeSlider.style.display = "none";
+//         }
+//     });
+
+//     volumeSlider.addEventListener("mouseleave", function () {
+//         volumeSlider.style.display = "none";
+//     });
+// });
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+const video = document.getElementById('video');
+const playBtn = document.getElementById('playBtn');
+const backwardBtn = document.getElementById('backwardBtn');
+const progress = document.querySelector('.progress');
+const progressBar = document.querySelector('.progress-bar');
+const volumeBtn = document.getElementById('volumeBtn');
+const volumeSlider = document.querySelector('.volume-slider');
+const overlayButton = document.querySelector('.overlayButton');
+const videoContainer = document.querySelector('.dff');
+const fullscreenBtn = document.getElementById('fullscreenBtn');
+const muteBox = document.querySelector('.mute-box');
+
+
+// Play/Pause toggle
+playBtn.addEventListener('click', () => {
+  if (video.paused) {
+    video.play();
+    playBtn.innerHTML = pauseIcon();
+    overlayButton.style.display = 'none';
+  } else {
+    video.pause();
+    playBtn.innerHTML = playIcon();
+    overlayButton.style.display = 'block';
+  }
+});
+
+// Overlay Button Play Functionality
+overlayButton.addEventListener('click', () => {
+  video.play();
+});
+
+video.addEventListener('play', function () {
+  overlayButton.style.display = 'none';
+
+  // UnMute Overlay
+  if (muteBox && video) {
+    muteBox.addEventListener('click', function () {
+      if (video.muted) {
+        video.muted = false;
+        console.log('Video unmuted');
+        document.querySelector('.mute-box').style.display = 'none';
+        document.getElementById('element').style.display = 'flex';
+
+      }
+
+      // Add event listener to the container if it's not already added
+      if (!videoContainer.hasAttribute('data-listener')) {
+        videoContainer.addEventListener('click', pauseVideo);
+        videoContainer.setAttribute('data-listener', 'true'); // Prevent duplicate listeners
+      }
+    });
+  }
+});
+
+function pauseVideo(event) {
+  if (!video.paused && event.target !== video) {
+    video.pause();
+    playBtn.innerHTML = playIcon();
+    overlayButton.style.display = 'block';
+  } else {
+    video.play();
+    playBtn.innerHTML = pauseIcon();
+  }
+}
+
+// 10-second backward
+backwardBtn.addEventListener('click', () => {
+  video.currentTime = Math.max(0, video.currentTime - 10);
+});
+
+// // Progress bar updates
+// video.addEventListener("timeupdate", () => {
+//   const progressPercent = (video.currentTime / video.duration) * 100;
+//   progress.style.width = `${progressPercent}%`;
+// });
+
+// // Seek functionality
+// progressBar.addEventListener("click", (e) => {
+//   const rect = progressBar.getBoundingClientRect();
+//   const pos = (e.clientX - rect.left) / rect.width;
+//   video.currentTime = pos * video.duration;
+// });
+
+const speedFactor = 5.0; // Adjust this to make the seek bar move faster
+
+video.addEventListener('timeupdate', () => {
+  const progressPercent =
+    (video.currentTime / video.duration) * 100 * speedFactor;
+  progress.style.width = `${Math.min(progressPercent, 100)}%`;
+});
+
+// Seek functionality (works as normal)
+progressBar.addEventListener('click', e => {
+  const rect = progressBar.getBoundingClientRect();
+  const pos = (e.clientX - rect.left) / rect.width;
+  video.currentTime = pos * video.duration;
+});
+
+// Volume controls
+volumeSlider.addEventListener('input', e => {
+  video.volume = e.target.value;
+  video.muted = e.target.value == 0;
+  updateVolumeIcon();
+});
+
+volumeBtn.addEventListener('click', () => {
+  video.muted = !video.muted;
+  if (!video.muted) video.volume = volumeSlider.value;
+  updateVolumeIcon();
+});
+
+const UnmuteIcon =
+  '<svg viewBox="0 0 24 22" width="24" height="22" aria-hidden="true" focusable="false"><g fill="none" fill-rule="evenodd"><path fill="currentColor" d="M12.59 2.87a.75.75 0 0 0-1.21-.59L5.6 6.77a.75.75 0 0 0-.26.1H1.68C.89 6.87.26 7.5.25 8.29v5.42c0 .37.14.74.42 1 .27.29.64.43 1 .43h3.81l5.9 4.58a.75.75 0 0 0 1.2-.59V2.87h.01Zm-7.6 5.5H1.75v5.27h3.24V8.37Zm1.5 5.65 4.6 3.58V4.4l-4.6 3.58v6.04Z"></path><g stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M19.2 2.66c5.23 5.59 4.86 11.15.11 16.68"></path><path d="M16.92 5.33c3.73 4.25 3.25 7.96-.01 11.34"></path><path d="M14.4 7.97c2.01 1.85 2.2 3.85 0 6.06"></path></g></g></svg>';
+
+const MuteIcon =
+  '<svg viewBox="0 0 24 22" width="24" height="22" aria-hidden="true" focusable="false"><g fill="none" fill-rule="evenodd"><path fill="currentColor" d="M12.59 2.87a.75.75 0 0 0-1.21-.59L5.6 6.77a.75.75 0 0 0-.26.1H1.68C.89 6.87.26 7.5.25 8.29v5.42c0 .37.14.74.42 1 .27.29.64.43 1 .43h3.81l5.9 4.58a.75.75 0 0 0 1.2-.59V2.87h.01Zm-7.6 5.5H1.75v5.27h3.24V8.37Zm1.5 5.65 4.6 3.58V4.4l-4.6 3.58v6.04Z"></path><g stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M19.2 2.66c5.23 5.59 4.86 11.15.11 16.68"></path><path d="M16.92 5.33c3.73 4.25 3.25 7.96-.01 11.34"></path><path d="M14.4 7.97c2.01 1.85 2.2 3.85 0 6.06"></path><path d="M21.9 1.1 2.1 20.9"></path></g></g></svg>';
+
+function updateVolumeIcon() {
+  volumeBtn.innerHTML =
+    video.muted || video.volume === 0
+      ? (document.getElementById('volumeBtn').innerHTML = MuteIcon)
+      : (document.getElementById('volumeBtn').innerHTML = UnmuteIcon);
+  volumeSlider.value = video.volume;
+}
+
+
+//Full screen
+
+
+
+// Icons for Play/Pause Button
+function playIcon() {
+  return `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 21" width="16" height="21" aria-hidden="true" focusable="false" class="PlayToggle__icon"><path fill="currentColor" d="M15.62 9.82 1.22.65A.78.78 0 0 0 .1.95a.86.86 0 0 0-.11.42V19.7c0 .15.04.3.11.42.07.13.17.23.3.3a.77.77 0 0 0 .8-.01l14.4-9.17a.82.82 0 0 0 .29-.3.86.86 0 0 0-.28-1.12Z"></path></svg>`;
+}
+
+function pauseIcon() {
+  return `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 17" width="12" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4.67 8.53v7.33c0 .5-.17.67-.68.67h-2.7c-.43 0-.62-.19-.62-.6V1.13c0-.41.19-.6.61-.6h2.77c.44 0 .62.19.62.63v7.37Zm2.66-.02V1.18c0-.47.18-.65.64-.65h2.75c.43 0 .61.19.61.6v14.8c0 .41-.19.6-.61.6H7.99c-.48 0-.66-.17-.66-.65V8.51Z"></path></svg>`;
+}
+});
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+document.querySelector(".quality-control").addEventListener("click", function() {
+  let menu = document.querySelector(".quality-menu");
+  menu.style.display = (menu.style.display === "none" || menu.style.display === "") ? "flex" : "none";
+});
+
+const video = document.getElementById("video");
+const qualityOptions = document.querySelectorAll(".quality-option");
+const shownQuality = document.querySelector(".shown-quality");
+
+const videoSources = {
+    "auto": "https://redemptionacademy.xyz/wp-content/uploads/2025/03/1080p-REDEMPTION-FINAL-1mp4.mp4",
+    "4K": "https://redemptionacademy.xyz/wp-content/uploads/2025/02/VSL-REDEMPTION-FINAL-1mp4.mp4",
+    "1080p": "https://redemptionacademy.xyz/wp-content/uploads/2025/03/1080p-REDEMPTION-FINAL-1mp4.mp4",
+    "720p": "https://redemptionacademy.xyz/wp-content/uploads/2025/03/720p-REDEMPTION-FINAL-1mp4.mp4",
+    "360p": "https://redemptionacademy.xyz/wp-content/uploads/2025/03/360p-REDEMPTION-FINAL-1mp4.mp4"
+};
+
+qualityOptions.forEach(option => {
+    option.addEventListener("click", function() {
+        let selectedQuality = this.getAttribute("data-quality");
+        let currentTime = video.currentTime; // Save playback position
+
+        // Update video source
+        video.src = videoSources[selectedQuality];
+        video.load();
+        video.currentTime = currentTime; // Restore position
+        video.play();
+
+        // Update quality text
+
+        shownQuality.textContent = selectedQuality.toUpperCase();
+
+        // Remove 'selected' class from all, then add to clicked one
+        qualityOptions.forEach(opt => opt.classList.remove("selected"));
+        this.classList.add("selected");
+      
+   
+    });
+});
+});
+
+// Read Dom:
+
+
+</script>
+
+
+<script>
+  
+  function isIPhone() {
+return /iPhone/i.test(navigator.userAgent);
+}
+
+function toggleFullScreen() {
+const video = document.getElementById("video");
+
+if (isIPhone() && video.webkitSupportsFullscreen) {
+  video.webkitEnterFullscreen(); // iPhone fullscreen mode
+} else if (video.requestFullscreen) {
+  video.requestFullscreen(); // Standard fullscreen mode
+} else if (video.mozRequestFullScreen) {
+  video.mozRequestFullScreen(); // Firefox
+} else if (video.webkitRequestFullscreen) {
+  video.webkitRequestFullscreen(); // Chrome, Safari, Opera
+} else if (video.msRequestFullscreen) {
+  video.msRequestFullscreen(); // IE/Edge
+}
+}
+
+</script>
